@@ -27,6 +27,8 @@ public class MedicalService {
     //medical sphere
 
 
+    private Integer ordersId;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;

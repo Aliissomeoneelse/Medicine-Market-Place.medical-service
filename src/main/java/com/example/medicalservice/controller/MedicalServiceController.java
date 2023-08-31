@@ -6,6 +6,8 @@ import com.example.medicalservice.service.MedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("medical-service")
@@ -25,6 +27,11 @@ public class MedicalServiceController {
     @GetMapping("/get-with-medical-sphere/{id}")
     public ResponseDto<MedicalServiceDto> getWithMedicalSphere(@PathVariable("id") Integer id){
         return medService.getWithMedicalSphere(id);
+    }
+
+    @GetMapping(value = "/get-medical-service-by-orders/{id}")
+    public ResponseDto<Set<MedicalServiceDto>> getMedicalServiceByOrdersId(@PathVariable("id") Integer id){
+        return medService.getMedicalServiceByOrdersId(id);
     }
 
     @PutMapping("/update/{id}")

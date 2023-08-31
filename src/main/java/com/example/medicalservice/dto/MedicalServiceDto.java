@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -24,6 +23,8 @@ public class MedicalServiceDto {
     private String description;
 
     private Set<MedicalSphereDto> medicalSpheres;
+
+    private Integer ordersId;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

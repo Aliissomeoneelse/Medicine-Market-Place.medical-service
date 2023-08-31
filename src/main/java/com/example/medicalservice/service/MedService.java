@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,6 +51,23 @@ public class MedService {
                 .success(true)
                 .message("OK")
                 .data(medicalServiceMapper.toDto(optional.get()))
+                .build();
+    }
+
+    public ResponseDto<Set<MedicalServiceDto>> getMedicalServiceByOrdersId(Integer id) {
+        Set<MedicalService> users = medicalServiceRepository.findAllByOrdersIdAndDeletedAtIsNull(id);
+        if(users.isEmpty()){
+            return ResponseDto.<Set<MedicalServiceDto>>builder()
+                    .message("Users are not found!")
+                    .code(-3)
+                    .data(null)
+                    .build();
+        }
+        return ResponseDto.<Set<MedicalServiceDto>>builder()
+                .success(true)
+                .message("OK")
+                //to transfer Set<MedicalService> to Set<MedicalServiceDto>
+                .data(users.stream().map(medicalServiceMapper::toDto).collect(Collectors.toSet()))
                 .build();
     }
 
