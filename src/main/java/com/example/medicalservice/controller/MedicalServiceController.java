@@ -28,6 +28,10 @@ public class MedicalServiceController {
     public ResponseDto<MedicalServiceDto> getWithMedicalSphere(@PathVariable("id") Integer id){
         return medService.getWithMedicalSphere(id);
     }
+    @GetMapping("/get-with-centre/{id}")
+    public ResponseDto<MedicalServiceDto> getWithCentre(@PathVariable("id") Integer id){
+        return medService.getWithCentre(id);
+    }
 
     @GetMapping(value = "/get-medical-service-by-orders/{id}")
     public ResponseDto<Set<MedicalServiceDto>> getMedicalServiceByOrdersId(@PathVariable("id") Integer id){

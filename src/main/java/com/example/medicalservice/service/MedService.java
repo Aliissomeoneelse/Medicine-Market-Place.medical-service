@@ -140,4 +140,20 @@ public class MedService {
                 .data(medicalServiceMapper.toDtoWithMedicalSphere(optional.get()))
                 .build();
     }
+
+    public ResponseDto<MedicalServiceDto> getWithCentre(Integer id) {
+        Optional<MedicalService> optional = this.medicalServiceRepository.findByIdAndDeletedAtIsNull(id);
+        if (optional.isEmpty()) {
+            return ResponseDto.<MedicalServiceDto>builder()
+                    .message("Medical service is not found!")
+                    .code(-3)
+                    .data(null)
+                    .build();
+        }
+        return ResponseDto.<MedicalServiceDto>builder()
+                .success(true)
+                .message("OK")
+                .data(medicalServiceMapper.toDtoWithCentre(optional.get()))
+                .build();
+    }
 }
